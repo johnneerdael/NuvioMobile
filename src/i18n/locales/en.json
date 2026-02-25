@@ -660,6 +660,7 @@
         "integrations": "Integrations",
         "playback": "Playback",
         "backup_restore": "Backup & Restore",
+        "backup_restore_desc": "Create and restore app backups",
         "updates": "Updates",
         "about": "About",
         "developer": "Developer",

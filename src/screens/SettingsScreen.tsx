@@ -544,7 +544,7 @@ const SettingsScreen: React.FC = () => {
           <SettingsCard title={t('settings.backup_restore').toUpperCase()} isTablet={isTablet}>
             <SettingItem
               title={t('settings.backup_restore')}
-              description="Create and restore app backups"
+              description={t('settings.backup_restore_desc')}
               icon="archive"
               renderControl={() => <ChevronRight />}
               onPress={() => navigation.navigate('Backup')}

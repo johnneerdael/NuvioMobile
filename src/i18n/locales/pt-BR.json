@@ -669,6 +669,7 @@
         "integrations": "Integrações",
         "playback": "Reprodução",
         "backup_restore": "Backup e Restauração",
+        "backup_restore_desc": "Crie e restaure backups",
         "updates": "Atualizações",
         "about": "Sobre",
         "developer": "Desenvolvedor",
