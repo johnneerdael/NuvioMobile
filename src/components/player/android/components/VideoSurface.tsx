@@ -131,6 +131,7 @@ export const buildExoAudioTrackName = (t: any, i: number): string => {
     const ch = channelCount ?? t.channelCount ?? null;
     if (ch != null && ch > 0) {
         if (ch === 8) parts.push('7.1');
+        else if (ch === 7) parts.push('6.1');
         else if (ch === 6) parts.push('5.1');
         else if (ch === 2) parts.push('2.0');
         else if (ch === 1) parts.push('Mono');
