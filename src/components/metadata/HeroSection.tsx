@@ -1155,9 +1155,8 @@ const HeroSection: React.FC<HeroSectionProps> = memo(({
           logger.info('HeroSection', `Fetching TMDB videos for ${metadata.name} (tmdbId: ${resolvedTmdbId})`);
 
           // Fetch video list from TMDB to get the YouTube video ID
-          const tmdbApiKey = await TMDBService.getInstance().getApiKey();
           const videosRes = await fetch(
-            `https://api.themoviedb.org/3/${contentType}/${resolvedTmdbId}/videos?api_key=${tmdbApiKey}`
+            `https://api.themoviedb.org/3/${contentType}/${resolvedTmdbId}/videos?api_key=d131017ccc6e5462a81c9304d21476de&language=en-US`
           );
 
           if (!alive) return;
@@ -1171,9 +1170,8 @@ const HeroSection: React.FC<HeroSectionProps> = memo(({
           const videosData = await videosRes.json();
           const results: any[] = videosData.results ?? [];
 
-          // Pick best YouTube trailer: official trailer > any trailer > teaser > any YouTube video
+          // Pick best YouTube trailer: any trailer > teaser > any YouTube video
           const pick =
-            results.find((v) => v.site === 'YouTube' && v.type === 'Trailer' && v.official) ??
             results.find((v) => v.site === 'YouTube' && v.type === 'Trailer') ??
             results.find((v) => v.site === 'YouTube' && v.type === 'Teaser') ??
             results.find((v) => v.site === 'YouTube');
