@@ -386,7 +386,7 @@ const TrailerPlayer = React.forwardRef<any, TrailerPlayerProps>(({
           return { uri: trailerUrl } as any;
         })()}
         style={styles.video}
-        resizeMode="contain"
+        resizeMode="cover"
         paused={!isPlaying}
         repeat={false}
         muted={isMuted}
