@@ -104,7 +104,7 @@ class CatalogService implements CatalogLibraryState {
     return getCatalogByType(this.library, dataSourcePreference, type, genreFilter);
   }
 
-  async getDataSourcePreference() {
+  async getDataSourcePreference(): Promise<DataSource> {
     return getDataSourcePreference();
   }
 

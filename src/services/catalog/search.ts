@@ -321,9 +321,19 @@ async function searchAddonCatalog(
 
     const items = metas.map(meta => {
       const content = convertMetaToStreamingContent(meta, library);
-      content.addonId = manifest.id;
-      if (type && content.type !== type) {
-        content.type = type;
+      const addonSupportsMeta = Array.isArray(manifest.resources) && manifest.resources.some((resource: any) =>
+        resource === 'meta' || (typeof resource === 'object' && resource?.name === 'meta')
+      );
+
+      if (addonSupportsMeta) {
+        content.addonId = manifest.id;
+      }
+
+      const normalizedCatalogType = type ? type.toLowerCase() : type;
+      if (normalizedCatalogType && content.type !== normalizedCatalogType) {
+        content.type = normalizedCatalogType;
+      } else if (content.type) {
+        content.type = content.type.toLowerCase();
       }
       return content;
     });
