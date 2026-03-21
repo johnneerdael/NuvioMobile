@@ -393,9 +393,17 @@ function dedupeAndStampResults(results: StreamingContent[], catalogType: string)
     }
   }
 
-  return Array.from(bestById.values()).map(item =>
-    catalogType && item.type !== catalogType ? { ...item, type: catalogType } : item
-  );
+  const normalizedCatalogType = catalogType ? catalogType.toLowerCase() : catalogType;
+  const STANDARD_TYPES = new Set(['movie', 'series', 'anime.movie', 'anime.series', 'anime', 'tv', 'channel']);
+
+  return Array.from(bestById.values()).map(item => {
+    // Only stamp catalog type if item doesn't already have a standard type.
+    // Prevents "other" from overwriting correct types like "movie"/"series".
+    if (normalizedCatalogType && !STANDARD_TYPES.has(item.type) && STANDARD_TYPES.has(normalizedCatalogType)) {
+      return { ...item, type: normalizedCatalogType };
+    }
+    return item;
+  });
 }
 
 function buildSectionName(
